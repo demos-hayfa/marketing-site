@@ -179,3 +179,4 @@ export default function Products() {
   )
 }
 
+Products.title = "Products"
