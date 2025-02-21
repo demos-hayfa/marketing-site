@@ -23,22 +23,51 @@ export default function Layout({ children, title }: LayoutProps) {
           </Link>
           <ul className="flex space-x-4">
             <li>
-              <Link href="/" className="hover:underline">
+              <Link
+                href="/"
+                default
+                className={
+                  "/" === window.location.pathname
+                    ? "font-bold text-white underline"
+                    : "text-gray-300"
+                }
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:underline">
+              <Link
+                href="/about"
+                className={
+                  "/about" === window.location.pathname
+                    ? "font-bold text-white"
+                    : "text-gray-300"
+                }
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link href="/products" className="hover:underline">
+              <Link
+                href="/products"
+                className={
+                  "/products" === window.location.pathname
+                    ? "font-bold text-white"
+                    : "text-gray-300"
+                }
+              >
                 Products
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:underline">
+              <Link
+                href="/contact"
+                className={
+                  "/contact" === window.location.pathname
+                    ? "font-bold text-white"
+                    : "text-gray-300"
+                }
+              >
                 Contact
               </Link>
             </li>
@@ -54,4 +83,3 @@ export default function Layout({ children, title }: LayoutProps) {
     </div>
   )
 }
-
