@@ -1,6 +1,33 @@
 import type React from "react"
 import Head from "next/head"
 import Link from "next/link"
+import clsx from "clsx"
+import { usePathname } from "next/navigation"
+
+function NavigationLink({
+  label,
+  path,
+  currentPath,
+}: {
+  label: string
+  path: string
+  currentPath: string
+}) {
+  const isActive = currentPath === path
+  return (
+    <li className="relative">
+      <Link
+        href={path}
+        className={clsx(
+          "hover:underline",
+          isActive && "text-white font-bold relative before:content-[''] before:block before:w-full before:absolute before:border-b-4 before:-bottom-1"
+        )}
+      >
+        {label}
+      </Link>
+    </li>
+  )
+}
 
 type LayoutProps = {
   children: React.ReactNode
@@ -8,6 +35,7 @@ type LayoutProps = {
 }
 
 export default function Layout({ children, title }: LayoutProps) {
+  const pathname = usePathname()
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
@@ -22,26 +50,10 @@ export default function Layout({ children, title }: LayoutProps) {
             TechCorp
           </Link>
           <ul className="flex space-x-4">
-            <li>
-              <Link href="/" className="hover:underline">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:underline">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/products" className="hover:underline">
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:underline">
-                Contact
-              </Link>
-            </li>
+            <NavigationLink label="Home" path="/" currentPath={pathname}/>
+            <NavigationLink label="About" path="/about" currentPath={pathname}/>
+            <NavigationLink label="Products" path="/products" currentPath={pathname}/>
+            <NavigationLink label="Contact" path="/contact" currentPath={pathname}/>
           </ul>
         </nav>
       </header>
@@ -54,4 +66,3 @@ export default function Layout({ children, title }: LayoutProps) {
     </div>
   )
 }
-
