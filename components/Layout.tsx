@@ -29,7 +29,9 @@ export default function Layout({ children, title }: LayoutProps) {
               <Link
                 href="/"
                 className={`${
-                  pathname === "/" ? "text-white font-bold underline" : "text-gray-300"
+                  pathname === "/"
+                    ? "bg-gray-200 text-black font-bold underline"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 Home
@@ -39,7 +41,9 @@ export default function Layout({ children, title }: LayoutProps) {
               <Link
                 href="/about"
                 className={`${
-                  pathname === "/about" ? "text-white font-bold underline" : "text-gray-300"
+                  pathname === "/about"
+                    ? "bg-gray-200 text-black font-bold underline"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 About
@@ -50,8 +54,8 @@ export default function Layout({ children, title }: LayoutProps) {
                 href="/products"
                 className={`${
                   pathname === "/products"
-                    ? "text-white font-bold underline"
-                    : "text-gray-300"
+                    ? "bg-gray-200 text-black font-bold underline"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 Products
@@ -62,8 +66,8 @@ export default function Layout({ children, title }: LayoutProps) {
                 href="/contact"
                 className={`${
                   pathname === "/contact"
-                    ? "text-white font-bold underline"
-                    : "text-gray-300"
+                    ? "bg-gray-200 text-black font-bold underline"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 Contact
