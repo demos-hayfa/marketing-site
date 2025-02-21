@@ -1,6 +1,7 @@
 import type React from "react"
 import Head from "next/head"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 type LayoutProps = {
   children: React.ReactNode
@@ -8,6 +9,9 @@ type LayoutProps = {
 }
 
 export default function Layout({ children, title }: LayoutProps) {
+  const router = useRouter()
+  const activeLinkClass = "text-white font-bold underline"
+
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
@@ -18,27 +22,39 @@ export default function Layout({ children, title }: LayoutProps) {
 
       <header className="bg-blue-600 text-white p-4">
         <nav className="container mx-auto flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            TechCorp
-          </Link>
+          <div>
+            <Link
+              href="/" 
+              className={`text-2xl font-bold hover:underline ${router.pathname === "/" ? activeLinkClass : ""}`}>
+              TechCorp
+            </Link>
+          </div>
           <ul className="flex space-x-4">
             <li>
-              <Link href="/" className="hover:underline">
+              <Link
+                href="/" 
+                className={`hover:underline ${router.pathname === "/" ? activeLinkClass : ""}`}>
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:underline">
+              <Link 
+                href="/about" 
+                className={`hover:underline ${router.pathname === "/about" ? activeLinkClass : ""}`}>
                 About
               </Link>
             </li>
             <li>
-              <Link href="/products" className="hover:underline">
+              <Link
+                href="/products" 
+                className={`hover:underline ${router.pathname === "/products" ? activeLinkClass : ""}`}>
                 Products
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:underline">
+              <Link 
+                href="/contact" 
+                className={`hover:underline ${router.pathname === "/contact" ? activeLinkClass : ""}`}>
                 Contact
               </Link>
             </li>
@@ -54,4 +70,3 @@ export default function Layout({ children, title }: LayoutProps) {
     </div>
   )
 }
-
