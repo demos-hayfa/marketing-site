@@ -1,7 +1,6 @@
 import type React from "react"
 import Head from "next/head"
 import Link from "next/link"
-import clsx from "clsx"
 import { usePathname } from "next/navigation"
 
 function NavigationLink({
@@ -18,10 +17,7 @@ function NavigationLink({
     <li className="relative">
       <Link
         href={path}
-        className={clsx(
-          "hover:underline",
-          isActive && "text-white font-bold relative before:content-[''] before:block before:w-full before:absolute before:border-b-4 before:-bottom-1"
-        )}
+        className={`hover:underline ${isActive ? "text-red-500 relative before:absolute before:border-b-4 before:w-full before:border-red-500 before:-bottom-1" : undefined }`}
       >
         {label}
       </Link>
