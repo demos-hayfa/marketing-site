@@ -7,6 +7,10 @@ type LayoutProps = {
   title: string
 }
 
+function isActivePage(path: string): boolean {
+  return typeof window !== "undefined" && window.location.pathname === path
+}
+
 export default function Layout({ children, title }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
@@ -23,22 +27,40 @@ export default function Layout({ children, title }: LayoutProps) {
           </Link>
           <ul className="flex space-x-4">
             <li>
-              <Link href="/" className="hover:underline">
+              <Link
+                href="/"
+                className={`${isActivePage("/") ? "text-white font-bold underline" : "text-gray-300"} hover:underline`}
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:underline">
+              <Link
+                href="/about"
+                className={`${
+                  isActivePage("/about") ? "text-white font-bold underline" : "text-gray-300"
+                } hover:underline`}
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link href="/products" className="hover:underline">
+              <Link
+                href="/products"
+                className={`${
+                  isActivePage("/products") ? "text-white font-bold underline" : "text-gray-300"
+                } hover:underline`}
+              >
                 Products
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:underline">
+              <Link
+                href="/contact"
+                className={`${
+                  isActivePage("/contact") ? "text-white font-bold underline" : "text-gray-300"
+                } hover:underline`}
+              >
                 Contact
               </Link>
             </li>
@@ -54,4 +76,3 @@ export default function Layout({ children, title }: LayoutProps) {
     </div>
   )
 }
-
