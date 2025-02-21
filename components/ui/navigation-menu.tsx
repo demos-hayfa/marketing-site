@@ -2,6 +2,8 @@ import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
 import { ChevronDown } from "lucide-react"
+import { usePathname } from "next/navigation"
+import Link, { type LinkProps } from "next/link"
 
 import { cn } from "@/lib/utils"
 
@@ -77,6 +79,35 @@ const NavigationMenuContent = React.forwardRef<
 ))
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
+export type NavigationLinkProps = React.PropsWithChildren<LinkProps> &
+  React.ComponentPropsWithoutRef<typeof Link>
+
+function NavigationLink({
+  href,
+  className,
+  children,
+  ...props
+}: NavigationLinkProps) {
+  const pathname = usePathname()
+  return (
+    <NavigationMenuPrimitive.Link asChild>
+      <Link
+        className={cn(
+          "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors",
+          pathname === href
+            ? "text-foreground text-base-bold-underline"
+            : "text-gray-base",
+          className
+        )}
+        href={href}
+        {...props}
+      >
+        {children}
+      </Link>
+    </NavigationMenuPrimitive.Link>
+  )
+}
+
 const NavigationMenuLink = NavigationMenuPrimitive.Link
 
 const NavigationMenuViewport = React.forwardRef<
@@ -120,9 +151,10 @@ export {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationLink,
   NavigationMenuContent,
   NavigationMenuTrigger,
-  NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
 }
