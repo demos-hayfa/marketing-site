@@ -42,6 +42,11 @@ export default function Layout({ children, title }: LayoutProps) {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link href="/careers" className="hover:underline">
+                Careers
+              </Link>
+            </li>
           </ul>
         </nav>
       </header>
@@ -54,4 +59,3 @@ export default function Layout({ children, title }: LayoutProps) {
     </div>
   )
 }
-
