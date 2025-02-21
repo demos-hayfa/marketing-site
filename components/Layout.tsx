@@ -1,3 +1,5 @@
+import { usePathname } from "next/navigation"
+
 import type React from "react"
 import Head from "next/head"
 import Link from "next/link"
@@ -50,6 +52,7 @@ export default function Layout({ children, title }: LayoutProps) {
             <NavigationLink label="About" path="/about" currentPath={pathname}/>
             <NavigationLink label="Products" path="/products" currentPath={pathname}/>
             <NavigationLink label="Contact" path="/contact" currentPath={pathname}/>
+            <NavigationLink label="Careers" path="/careers" currentPath={pathname}/>
           </ul>
         </nav>
       </header>
